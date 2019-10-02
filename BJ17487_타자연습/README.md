@@ -35,10 +35,7 @@
 예제
 ----
 
-<div>
-<img width="200" src"https://user-images.githubusercontent.com/50766175/66043445-214ca800-e55a-11e9-91d0-a19c276b62bd.png">
-</img>
-</div>
+![image](https://user-images.githubusercontent.com/50766175/66043780-11819380-e55b-11e9-9b2b-26cd83dcd132.png)
 
 Input1
 
