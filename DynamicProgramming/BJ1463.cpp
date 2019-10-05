@@ -1,15 +1,11 @@
 #include <iostream>
-#include <cmath>
+#include <algorithm>
 #include <vector>
 using namespace std;
 
 typedef vector<int> v_int;
 
 int findMinCut(int N, v_int& X);
-
-//Simply return the smallest one.
-int int_min(int n1, int n2);
-int int_min(int n1, int n2, int n3);
 
 int main() {
 	int N;
@@ -43,39 +39,15 @@ int findMinCut(int N, v_int& X) {
 	//If N == 1, return;
 	if (X[N] == 0 && N > 1) {
 		//Compare all Possible cases and store min value.
-		if (N % 3 == 0 && N % 2 == 0)
-			Min = int_min(findMinCut(N / 3, X), findMinCut(N / 2, X), findMinCut(N - 1, X));
-		else if (N % 3 == 0)
-			Min = int_min(findMinCut(N / 3, X), findMinCut(N - 1, X));
-		else if (N % 2 == 0)
-			Min = int_min(findMinCut(N / 2, X), findMinCut(N - 1, X));
-		else
-			Min = findMinCut(N - 1, X);
+		Min = findMinCut(N - 1, X);
+		if (N % 2 == 0)
+			Min = min(findMinCut(N / 2, X), Min);
+		if (N % 3 == 0)
+			Min = min(findMinCut(N / 3, X), Min);
 
 		//Since processing one step, plus one.
 		X[N] = Min + 1;
 	}
 
 	return X[N];
-}
-
-int int_min(int n1, int n2) {
-	if (n1 <= n2)
-		return n1;
-	else
-		return n2;
-}
-int int_min(int n1, int n2, int n3) {
-	if (n1 <= n2) {
-		if (n1 <= n3)
-			return n1;
-		else
-			return n3;
-	}
-	else {
-		if (n2 <= n3)
-			return n2;
-		else
-			return n3;
-	}
 }
