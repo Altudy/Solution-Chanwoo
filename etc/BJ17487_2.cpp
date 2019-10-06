@@ -1,4 +1,5 @@
 #include<ios>
+
 int c, i, left, right, find, s;
 char a[17] = "qwertyasdfgzxcvb";
 int main() {
