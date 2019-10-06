@@ -6,3 +6,8 @@
 ```
 [BJ17127_DP풀이](https://github.com/Altudy/Solution-Chanwoo/blob/master/DynamicProgramming/BJ17127.cpp)
 
+**BJ6603**[로또](https://www.acmicpc.net/problem/6603)
+```
+- {1, ... , 49}의 부분집합에서 6개를 고르는 조합수를 구하는 문제. 여러가지 방법으로 풀이가 가능할것 같다.
+- #define FOR(i, in, s) for(int i= in; i < s; i++) //To ease distinguish index. 매크로 연습
+```
