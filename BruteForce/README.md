@@ -12,4 +12,5 @@
 ```
 - {1, ... , 49}의 부분집합에서 6개를 고르는 조합수를 구하는 문제. 여러가지 방법으로 풀이가 가능할것 같다.
 - #define FOR(i, in, s) for(int i= in; i < s; i++) //To ease distinguish index. 매크로 연습
+- 재귀함수를 이용한 풀이 -> BJ6603_recur.cpp
 ```
