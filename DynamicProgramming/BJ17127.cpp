@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 using namespace std;
 
 int main() {
@@ -21,17 +22,13 @@ int main() {
 		
 	
 
-	int temp;
-	for (int line1 = 0; line1 <= N - 4; line1++) {
-		for (int line2 = line1 + 1; line2 <= N - 3; line2++) {
-			for (int line3 = line2 + 1; line3 <= N - 2; line3++) {
-				temp = D[0][line1] + D[line1 + 1][line2] + D[line2 + 1][line3] + D[line3 + 1][N - 1];
-				if (temp > Max)
-					Max = temp;
-			}
-		}
-	}
-
+	int Max(0);
+	for (int line1 = 0; line1 <= N - 4; line1++) 
+		for (int line2 = line1 + 1; line2 <= N - 3; line2++) 
+			for (int line3 = line2 + 1; line3 <= N - 2; line3++) 
+				Max = max(Max, D[0][line1] + D[line1 + 1][line2] + D[line2 + 1][line3] + D[line3 + 1][N - 1]);
+	
+	
 	cout << Max;
 
 	return 0;
