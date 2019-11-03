@@ -5,9 +5,10 @@
 using namespace std;
 typedef pair<unsigned int, unsigned int> puiui;
 //global variable
-int N;
+int N, cnt(0);
 
-//main
+void count();
+
 int main() {
 	//set
 	ios::sync_with_stdio(false);
@@ -20,9 +21,15 @@ int main() {
 
 	// sort
 	sort(C.begin(), C.end());
+	count();
+	
+	cout << cnt;
 
-	// KEY
-	unsigned int start_point(0), cnt(0);
+	return 0;
+}
+
+void count(){
+	unsigned int start_point(0);
 	for (int i = 0; i < N; i++) {
 		if (start_point <= C[i].second) {
 			start_point = C[i].first;
@@ -31,9 +38,4 @@ int main() {
 		else
 			continue;
 	}
-	
-	//output
-	cout << cnt;
-
-	return 0;
 }
