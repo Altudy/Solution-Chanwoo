@@ -7,7 +7,7 @@
 - 변수와 함수의 반환 type을 long long으로 해주어야 한다.
 ```
 
-**CF_96A**[Theatre Square](http://codeforces.com/problemset/problem/96/A)
+**CF_96A**[Football](http://codeforces.com/problemset/problem/96/A)
 ```
 - 난이도0. 복잡도O(N)
 - 문자열 1개를 입력으로 받고 첫번째 문자부터 차례로 훑으며 7개 이상의 중복이 있는지 검사하여 끝까지 간다.
