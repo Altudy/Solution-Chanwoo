@@ -68,7 +68,7 @@ int main() {
 	for (int p1(0), p2(1); max(p1, p2) + 1 < W + 2; ) {
 		cout << path[p1][p2] << '\n';
 		if (path[p1][p2] == 1)  p1 = max(p1, p2) + 1;
-		else					          p2 = max(p1, p2) + 1;
+		else			p2 = max(p1, p2) + 1;
 	}
 	
 	return 0;
