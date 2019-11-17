@@ -6,6 +6,12 @@
 - 금방 풀었지만 처음에 각 0과 1의 갯수를 pair로 저장하려다가 pair가 operator+를 지원안하는 것을 깨닫고 오버로딩해보려다가
 - 포기하고 쉽게 풀었다. 나중에 pair 연산자 오버로딩을 해보자.
 ```
+
+**BOJ_1092**: [배](https://www.acmicpc.net/problem/1092)
+```
+- Yet
+```
+
 **BOJ_1149**: [RGB거리](https://www.acmicpc.net/problem/1149)
 ```c
 - i번쨰 집을 칠할 떄는 i-1번째 집만 고려해주면 되므로 첫번째 집부터 칠해가는 방법으로 DP로 구현한다.
