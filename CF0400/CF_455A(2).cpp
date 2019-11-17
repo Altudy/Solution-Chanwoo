@@ -1,4 +1,4 @@
-include <iostream>
+#include <iostream>
 #include <string>
 #include <vector>
 #include <algorithm>
@@ -24,8 +24,8 @@ vi DP, A;
 //FUNC
 void input() {
 	cin >> N;
-	DP.assign(100000, -1LL);
-	A.assign(100000, 0LL);
+	DP.assign(100001, -1LL);   //index가 숫자 값 자체이므로 DP[100000]도 접근가능해야 한다.
+	A.assign(100001, 0LL);
 	ll temp;
 	for (int i = 0; i < N; i++) {
 		cin >> temp;
