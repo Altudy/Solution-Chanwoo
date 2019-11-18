@@ -1,0 +1,46 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#define x first
+#define y second
+#define MAX_ll 9000000000000000000 //9*10^18 정도가 최대값.
+//TDEF
+using namespace std;
+typedef long long int ll;
+typedef unsigned long long int ull;
+typedef vector<ll> vi;
+typedef vector<vector<ll>> vvi;
+typedef vector<bool> vb;
+typedef vector<char> vch;
+typedef pair<ll, ll> pii;
+
+/********Actual Code*********/
+//GLOB
+int n, k, mx(100);       //나올 수 있는 최고숫자는 100.
+int a[50], hash[101]{};  //숫자 50개 가능, 각 숫자의 범위 0이상 100이하.
+
+//FUNC
+void input() {
+	cin >> n >> k;
+	for (int i = 0; i < n; i++) {
+		cin >> a[i];
+		::hash[a[i]]++;   //숫자가 나온 횟수를 저장.
+	}
+	mx = a[0];          //nonincreasing order 이므로 0번 인덱스가 가장 높은값.
+}
+
+int sol() {
+	int cnt(0);
+	for (int idx=max(1, a[k-1]); idx <= mx; idx++) //idx: 0인 점수는 더해줄 필요없으니깐 
+		cnt += ::hash[idx];
+	return cnt;
+}
+
+//MAIN
+int main() {
+	ios::sync_with_stdio(false);
+	input();
+	cout << sol() << '\n';
+	return 0;
+}
