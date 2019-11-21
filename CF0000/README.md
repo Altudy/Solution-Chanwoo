@@ -7,8 +7,20 @@
 - 변수와 함수의 반환 type을 long long으로 해주어야 한다.
 ```
 
+**CF_04C**[Registration system](http://codeforces.com/contest/4/problem/C)
+```
+- 처음에, 문제 요구사항이 적절한 hashing인줄 알았는데, STL의 map 클래스로 아주 간단히 해결가능하였다.
+- 그래서 map과 hashed_map의 차이점이 있을까 하여 알아봤는데 간략히 다음과 같은 다른점이 있다.
+# A map requires O(log(N)) time for inserts and finds operations, 
+# as it's implemented as a Red-Black Tree data structure.
+# An unordered_map requires an 'average' time of O(1) for inserts and finds, 
+# but is allowed to have a worst - case time of O(N).This is because it's implemented using Hash Table data structure.
+```
+
 **CF_96A**[Football](http://codeforces.com/problemset/problem/96/A)
 ```
 - 난이도0. 복잡도O(N)
 - 문자열 1개를 입력으로 받고 첫번째 문자부터 차례로 훑으며 7개 이상의 중복이 있는지 검사하여 끝까지 간다.
 ```
+
+
