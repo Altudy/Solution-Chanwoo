@@ -15,6 +15,8 @@
 # as it's implemented as a Red-Black Tree data structure.
 # An unordered_map requires an 'average' time of O(1) for inserts and finds, 
 # but is allowed to have a worst - case time of O(N).This is because it's implemented using Hash Table data structure.
+- 즉, hashtable을 이용하는 unordered_map자료구조는 나름 균등하게 key가 들어갈 때 더 좋은 성능을 보인다는 건데,
+- 항상 최악의 case를 집어넣어주는 프로그래밍 문제의 특성상 항상 log(N)의 성능을 주는 map을 쓰는 것이 마음이 편할 듯 싶다.
 ```
 
 **CF_96A**[Football](http://codeforces.com/problemset/problem/96/A)
