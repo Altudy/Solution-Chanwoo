@@ -2,18 +2,16 @@
 --------------
 
 **BOJ_1003**: [피보나치 함수](https://www.acmicpc.net/problem/1003)
-```
-- 금방 풀었지만 처음에 각 0과 1의 갯수를 pair로 저장하려다가 pair가 operator+를 지원안하는 것을 깨닫고 오버로딩해보려다가
-- 포기하고 쉽게 풀었다. 나중에 pair 연산자 오버로딩을 해보자.
-```
+
+*pair로 풀어보기*
 
 **BOJ_1032**: [명령 프롬프트](https://www.acmicpc.net/problem/1032)
+
 *첫 문자열을 ans에 넣어놓고 입력 받을때마다 다른부분을 ?로 ans갱신*
 
 **BOJ_1092**: [배](https://www.acmicpc.net/problem/1092)
-```
-- Yet
-```
+
+*yet*
 
 **BOJ_1149**: [RGB거리](https://www.acmicpc.net/problem/1149)
 ```c
