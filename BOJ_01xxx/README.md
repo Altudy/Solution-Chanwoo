@@ -36,6 +36,21 @@ cnt = cnt - (s[0] == ' ') - (s[size - 1] == ' ') + 1; 으로 처리하는게 깔
 - 그 다음 배열 A를 검사하여 가장 많이 나온 알파벳을 뽑는다.
 ```
 
+**BOJ_1316**: [그룹 단어 체커](https://www.acmicpc.net/problem/1316)
+```c
+- for문안에서 새로운 문자가 나왔을 때 그룹이 끝날때까지 i를 증가시켜서 중복 검사를 쉽게 만들 수 있다.
+for (int i = 0; i < size; i++) {
+	int idx = int(str[i] - 'a');
+	if (check[idx])
+		return;
+	else {
+		check[idx] = true;
+		while (i < size && str[i] == str[i + 1])
+			i++;
+	}
+}
+```
+
 **BOJ_1463**: [1로 만들기](https://www.acmicpc.net/problem/1463)
 ```
 - 1에서 [*3 or *2 or +1]을 해가며 거쳐가는 숫자들이 있을때, 
