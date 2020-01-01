@@ -5,4 +5,6 @@ PS(Problem Solving)-solution
 2. 문제해결전략에 따라 폴더를 구분해놓았으며, 어떤 전략이라고 구분짓기 애매한 문제들은 etc폴더에 들어있습니다.
 3. 각 문제마다 전략 폴더 README.md에 느낀점, 풀이의 핵심전략 등을 한두줄로 요약해놓았습니다.
 
+4. 태그 종류: #문자열처리, #다이나믹, #그리디, #DFS, #BFS, #개선
+
 *Soongsil University Programming Study from 2019.09*
