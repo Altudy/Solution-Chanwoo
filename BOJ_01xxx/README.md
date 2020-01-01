@@ -23,6 +23,13 @@ for (int i = 1; i < N; i++) {
 	}
 ```
 
+**BOJ_1152**: [단어의 개수](https://www.acmicpc.net/problem/1152)
+```c
+- while문의 조건으로 cin >> str을 하는 건 vs 에서 계속 무한루프가 돌았고, 결국
+- 공백을 모두 센 뒤
+cnt = cnt - (s[0] == ' ') - (s[size - 1] == ' ') + 1; 으로 처리하는게 깔끔했다.
+```
+
 **BOJ_1463**: [1로 만들기](https://www.acmicpc.net/problem/1463)
 ```
 - 1에서 [*3 or *2 or +1]을 해가며 거쳐가는 숫자들이 있을때, 
