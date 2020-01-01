@@ -7,6 +7,9 @@
 - 포기하고 쉽게 풀었다. 나중에 pair 연산자 오버로딩을 해보자.
 ```
 
+**BOJ_1032**: [명령 프롬프트](https://www.acmicpc.net/problem/1032)
+*첫 문자열을 ans에 넣어놓고 입력 받을때마다 다른부분을 ?로 ans갱신*
+
 **BOJ_1092**: [배](https://www.acmicpc.net/problem/1092)
 ```
 - Yet
