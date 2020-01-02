@@ -1,4 +1,5 @@
-// #lev4 #후보제거 #
+#lev4 #후보제거 #
+
 #define	N		4
 
 //void doUserImplementation에 필요한 자료형, 함수를 먼저 정의.
