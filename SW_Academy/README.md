@@ -1,5 +1,8 @@
 List
 -----
+
+[SW Expert Academy](https://swexpertacademy.com/main/main.do)
+
 **SW_1768**[숫자야구게임]
 
 *어려움 - 논리로 찾아가려 하면 구현이 너무 어렵고, 랜덤하게 시험한 후 후보군을 줄여가는 식으로 해결*
