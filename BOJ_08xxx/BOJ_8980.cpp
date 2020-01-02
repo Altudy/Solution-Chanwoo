@@ -65,35 +65,37 @@ int main() {
 }
 
 /*
+
 struct Schedule { int f, t, k; } sc[10000];     //f:from , t:to k:box
 
 //도착지 오름차순 -> 출발지 오름차순 정렬 위한 compare 함수
 bool cmp(const Schedule &a, const Schedule &b) {
 	if(a.t<b.t) 
-    return true; 
-  else 
-    if(a.t>b.t) return false;
+		return true; 
+	else 
+		if(a.t>b.t) return false;
 	return a.f < b.f;
 }
 
 int main() {
 	int n, c, m, min, ans=0, i, j; 
-  static int stop[2000];
-  
+	static int stop[2000];
+
 	cin >> n >> c >> m;
 	for(i=0;i<m;i++) 
-    cin >> sc[i].f >> sc[i].t >> sc[i].k, sc[i].f--;, sc[i].t--;
-  std::sort(sc,sc+m,cmp);
-	
-  for(i=0;i<m;i++) {
+		cin >> sc[i].f >> sc[i].t >> sc[i].k, sc[i].f--;, sc[i].t--;
+	std::sort(sc,sc+m,cmp);
+
+	for(i=0;i<m;i++) {
 		for(j=sc[i].f,min=sc[i].k;j<sc[i].t;j++) 
-      min=c-stop[j]<min?c-stop[j]:min;
+			min=c-stop[j]<min?c-stop[j]:min;
 		for(j=sc[i].f;j<sc[i].t;j++) 
-      stop[j]+=min;
+			stop[j]+=min;
 		ans+=min;
 	}
+	
 	printf("%d\n", ans);
-
+	return 0;
 }
 
 */
