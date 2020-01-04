@@ -1,6 +1,6 @@
 프로그래밍 대회에서 배우는 알고리즘 문제해결 전략
 --------------------------------------------------
-**Algorithmic problem solving strategies solutions**->[링크](https://algospot.com/judge/problem/list/?author=JongMan)
+**Algorithmic problem solving strategies solutions**->[문제 모음 링크](https://algospot.com/judge/problem/list/?author=JongMan)
 
 **소풍/PICNIC**
 
