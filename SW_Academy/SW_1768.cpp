@@ -75,8 +75,8 @@ void doUserImplementation(int guess[]){
 
 	while(1){
 		for(register int i=0; i<Count_guess; ++i){
-			if(V[A[i]]){ //가능 후보이면
-				key = A[i];   //추출해서 query로.
+			if(V[A[i]]){ 		//가능 후보이면
+				key = A[i];   	//추출해서 query로.
 				guess[3] = A[i] % 10;
                 guess[2] = (A[i] / 10) % 10;
                 guess[1] = (A[i] / 100) % 10;
