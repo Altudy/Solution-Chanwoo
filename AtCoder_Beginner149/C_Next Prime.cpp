@@ -33,4 +33,4 @@ int main() {
     cout << X << '\n';
  
     return 0;
-}   //#lev1 #소수..
+}   //#lev1 #소수처리
