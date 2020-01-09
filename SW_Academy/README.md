@@ -18,3 +18,7 @@ List
 **SW_8556**[북북서](https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AW1BsILa2X0DFARC)
 
 *단순 구현 문제.*
+
+**SW_9229**[한빈이와 Spot Mart](https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AW8Wj7cqbY0DFAXN)
+
+*최대값이 나오는 두봉지를 고르는 문제, Greedy알고리즘으로 풀 수 없을 것 같아 브루트포스로 구현, 입력이 크지 않아서 쉽게 해결하였다.*
