@@ -20,7 +20,11 @@ PS(Problem Solving)-solution
 #lev5 : 매우다양한풀이가나오는
            최적화알고리즘 or 꼬아낸 매우어려운알고리즘
 
-**태그**
+**알고리즘, 자료구조별 태그**
+
+*in this repository로 검색하세요*
+
+#아이디어 #소수처리 #중복처리
 
 #탐색 #그리디 #다이나믹
 
@@ -31,5 +35,6 @@ PS(Problem Solving)-solution
 #큐  #맵  #집합  #페어
 
 #프림 #크루스칼
+
 
 *Soongsil University Programming Study from 2019.09*
