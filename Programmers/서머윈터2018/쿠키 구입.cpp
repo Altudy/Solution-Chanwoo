@@ -1,4 +1,5 @@
 // #lev3
+// 쿠키구입 ver3
 
 #include <string>
 #include <vector>
@@ -36,4 +37,83 @@ int solution(vector<int> cookie) {
         }
     }
     return answer;
+}
+
+// 쿠키구입 ver1
+
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+typedef vector< int > vi;
+typedef vector< vector<int> > vvi;
+
+int solution(vector<int> cookie) {
+    int N = cookie.size();
+    vvi Sum(N, vi(N, 0));
+    vi ans;
+
+    for (int i = 0; i < N - 1; i++) {
+        Sum[i][i] = cookie[i];
+        for (int j = i + 1; j < N; j++) {
+            Sum[i][j] = Sum[i][j - 1] + cookie[j];
+            if (Sum[i][j] % 2 == 1) continue;
+            else {
+                for (int jj = i + 1; jj <= j; jj++)
+                    if (2 * Sum[i][jj] == Sum[i][j]) {
+                        ans.push_back(Sum[i][jj]);
+                        break;
+                    }
+                    else if (2 * Sum[i][jj] > Sum[i][j]) break;
+            }
+        }
+            
+    }
+    if (ans.size() == 0)
+        return 0;
+    else {
+        sort(ans.begin(), ans.end());
+        return ans.back();
+    }
+}
+
+// 쿠키구입 ver2
+
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <map>
+
+using namespace std;
+
+typedef vector< int > vi;
+typedef vector< vector<int> > vvi;
+
+int solution(vector<int> cookie) {
+    int N = cookie.size();
+    vi Sum(N);
+    int ans = -1;
+    map<int, int> search;
+
+    for (int i = 0; i < N - 1; i++) {
+        search.clear();
+        int sum = cookie[i];
+        search[sum] = 1;
+        for (int j = i + 1; j < N; j++) {
+            sum += cookie[j]; search[sum] = 1;
+            if (sum % 2 == 1 || sum <= ans/2) continue;
+            else {
+                if (search[sum / 2] == 1)
+                    if (sum / 2 > ans)
+                        ans = sum / 2;
+            }
+        }
+    }
+
+    if (ans == -1)
+        return 0;
+    else
+        return ans;
 }
