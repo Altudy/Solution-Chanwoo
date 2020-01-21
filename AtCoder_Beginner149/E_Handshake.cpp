@@ -1,5 +1,5 @@
 // [Tag]
-// #lev4 #중간점
+// #lev4 #BinarySearch
 
 #include <iostream>
 #include <algorithm>
