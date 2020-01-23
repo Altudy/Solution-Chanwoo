@@ -1,5 +1,5 @@
 // [Tag]
-// #lev1 #아이디어
+// #lev2 #아이디어
 
 #include <iostream>
 #include <algorithm>
