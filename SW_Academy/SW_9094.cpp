@@ -40,47 +40,55 @@ template<class T>
 using MinHeap = priority_queue<T, vector<T>, greater<T> >;
 
 /*************************************************/
+
+typedef struct employee {
+    employee() { visit = false;}
+    bool visit;
+    vi from;
+}E;
+
 int N;
-int sol() {
-    vector<vi> ori(N, vi(N, false));
-    vector<int> visited(N);
+
+ll sol() {
+    vector<E> Es(N, E());
+    ll mn(INF);
 
     for (int i = 0; i < N; i++) {
         int kn, j; cin >> kn;
         while (kn--) {
             cin >> j;
-            ori[i][j - 1] = true;
+            Es[j - 1].from.push_back(i);
         }
     }
+    
+    for (int R = 0; R < N; R++) { // check all case.
 
-    //for (int i = 0; i < N; i++)
-    //    for (int j = 0; j < N; j++)
-    //        if (ori[i][j]) cout << i + 1 << " to " << j + 1 << '\n';
-    int mn(inf);
-    
-    
-    for (int R = 0; R < N; R++) {  //Root직원 기준 int R = 0; R < N; R++
-        int cnt(1);
-        int ans(0);
-        queue<int> Q;
-        for (auto &v : visited) v = false;
-        Q.push(R);
+        ll val(1), ans(0);  // 1 layer's value & temp answer
+        int emplo_size(1);  // The number of employee in root tree
+        for(auto &E: Es) E.visit = false;  //initialize
+        queue<E*> Q;        //we'll use Queue for BFS
+
+        Q.push(&Es[R]);     // At first, do Root case.
+        Es[R].visit = true;
+
         while (!Q.empty()) {
-            int cnt_size = Q.size();
-            ans += (cnt * cnt_size);
+            ll Q_size = (ll) Q.size();
+            ans += (val * Q_size);
             if (ans > mn) break;
 
-            while (cnt_size--) {
-                int q = Q.front(); Q.pop();
-                visited[q] = true;
-                for (int i = 0; i < N; i++)
-                    if (ori[i][q] && !visited[i]) Q.push(i), visited[i] = true;
-                
+            while (Q_size--) {
+                E* q = Q.front(); Q.pop();
+                for (auto f : q->from)
+                    if (Es[f].visit == false) { // put employee in tree.
+                        emplo_size++;  Q.push(&Es[f]);
+                        Es[f].visit = true;
+                    }
             }
-            cnt++;
+            val++;
         }
 
-        if (mn >= ans) mn = ans;
+        // If all employee place in tree && find optimal answer, Update.
+        if (emplo_size == N && mn >= ans) mn = ans;
     }
     return mn;
 }
@@ -94,8 +102,10 @@ int main() {
         cin >> N;
         cout << "#" << t << " " << sol() << '\n';
     }
-    
     return 0;
 }
+
+
+
 
 
