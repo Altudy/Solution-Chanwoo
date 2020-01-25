@@ -96,43 +96,47 @@ int main() {
 
 
 
-
-#include <bits/stdc++.h>
+#include <cstdio>
+#include <cmath>
+#include <cstdint>
+#include <algorithm>
+//#pragma warning(disable:4996)
 using namespace std;
- 
+
 const int N = 500;
 int x[N], y[N];
-int dp[N][N];
+int DP[N][N];
 char buf[131072];
- 
-inline int d (int i, int j) {
-    return abs(x[i]-x[j]) + abs(y[i]-y[j]);
+
+inline int dist(int i, int j) {
+    return abs(x[i] - x[j]) + abs(y[i] - y[j]);
 }
- 
- 
+
+
 int main() {
     setvbuf(stdin, buf, _IOFBF, 131072);
-    int tc;
-    scanf("%d", &tc);
-    for (int ti=1; ti<=tc; ++ti) {
+    int T;
+    scanf("%d", &T);
+    for (int t = 1; t <= T; ++t) {
         int n, k;
         scanf("%d%d", &n, &k);
-        for (int i=0; i<n; ++i) {
-            scanf("%d%d", x+i, y+i);
+        for (int i = 0; i < n; ++i) {
+            scanf("%d%d", x + i, y + i);
         }
-        for (int v=1; v<n; ++v) {
-            for (int ki=0; ki<=min(v-1,k); ++ki) {
-                if (ki == v-1) {
-                    dp[v][v-1] = d(0, v);
+        //solve
+        for (int v = 1; v < n; ++v) { //vertex : ~v까지의 거리
+            for (int ki = 0; ki <= min(v - 1, k); ++ki) { // 최대 ki만큼 건너뛰었을 때의 DP
+                if (ki == v - 1) {
+                    DP[v][v - 1] = dist(0, v);
                     continue;
                 }
-                int cur = numeric_limits<int>::max();
-                for (int i=0; ki-i>=0; ++i) {
-                    cur = min(cur, dp[v-i-1][ki-i]+d(v-i-1, v));
-                }
-                dp[v][ki] = cur;
+                int mn = INT32_MAX;
+                for (int i = 0; i <= ki; ++i) //v-1 ~ v 부분을 건너뛰는 경우를 고려하여 최솟값 탐색. 
+                    mn = min(mn, DP[v - i - 1][ki - i] + dist(v - i - 1, v));
+                
+                DP[v][ki] = mn;
             }
         }
-        printf("#%d %d\n", ti, dp[n-1][k]);
+        printf("#%d %d\n", t, DP[n - 1][k]);
     }
 }
