@@ -1,90 +1,108 @@
-//Tag : #lev4 #문자열처리
+// #lev4 #Trie #문자열처리
+
 #include <iostream>
+#include <cstdio>
+#include <cmath>
+#include <cstdint>
+#include <cstring>
 #include <algorithm>
+#include <queue>
 #include <vector>
 #include <string>
 #include <deque>
 #include <map>
+//#pragma warning(disable:4996)
 
-#define Inf                     1001001001
 using namespace std;
 
-typedef long long int           ll;
-typedef pair<ll, ll>            p_ll;
-typedef vector<int>             vi;
-typedef vector<long long>		vl;
-typedef vector<vi>              vvi;
-typedef vector<vl>				vvl;
-typedef vector<char>            vch;
-typedef unsigned char           uchar;
-typedef unsigned int            ui;
-typedef unsigned long long int  ull;
-/*************************************************/
+// 아름다운 이름 같은 경우는 순서에 따른 경우의 수만을 계산하면 되었기 때문에
+// 트라이를 완전히 만들 필요가 없었지만, 문자열을 가지고 검색을 해야하는 이런 경우,
+// 트라이 구조를 완전히 만드는 것이 좋다.
 
+/**********Trie*********Trie*********Trie********Trie*****/
 
-int find_match(const string& queries, const vector<string> &words, int q_size) {
-    int num_words = words.size();
-    if (num_words == 0) return 0;
+//change to suit your needs
+const int BRANCH_SIZE = 26;
 
-    int num_match(0);
-    if (queries.front() == '?') {
-        for (auto word : words) {
-            bool match = true;
-            for (int i = q_size - 1; i >= 0; i--) {
-                if (queries[i] == '?') break;
-                else {
-                    if (queries[i] != word[i]) {
-                        match = false; break;
-                    }
-                }
-            }
-            if (match) num_match++;
-        }
+struct Trie {
+public:
+    Trie* children[BRANCH_SIZE];
+    bool isEndOfWord;
+    int cnt;
+    inline int toNum(const char& ch) { return int(ch - 'a'); }
+    // Constructor
+    Trie() : isEndOfWord(false), cnt(0) {
+        memset(children, 0, sizeof(children));
     }
-    else if (queries.back() == '?') {
-        for (auto word : words) {
-            bool match = true;
-            for (int i = 0 ; i < q_size; i++) {
-                if (queries[i] == '?') break;
-                else {
-                    if (queries[i] != word[i]) {
-                        match = false; break;
-                    }
-                }
-            }
-            if (match) num_match++;
-        }
+    // Destructor
+    ~Trie() {
+        for (int i = 0; i < BRANCH_SIZE; ++i)
+            if (children[i])
+                delete children[i];
     }
-    return num_match;
-}
+
+    void insert(const char* key) {
+        // INSERT OPERATION 
+        cnt++;
+        if (*key == 0)
+            isEndOfWord = true;
+        else {
+            
+            int next = toNum(*key);
+            if (children[next] == 0)
+                children[next] = new Trie();
+            children[next]->insert(key + 1);
+        }
+
+    }
+
+    Trie* find(const char* key) {
+        if (*key == 0) return this;
+        int next = toNum(*key);
+        if (key[next] == 0) return 0;
+        return children[next]->find(key + 1);
+    }
+
+    int getCnt(const char* key) {
+        if (*key == '?') return cnt;
+
+        int next = toNum(*key);
+        if (children[next] == 0) return 0;
+        return children[next]->getCnt(key + 1);
+    }
+
+};
+
+/**********Trie***********END**********Trie**********END************/
+
+
 
 vector<int> solution(vector<string> words, vector<string> queries) {
     vector<int> answer;
-    vector< vector<string> > words_per_length;
-    map <string, int> q_map;
-    words_per_length.resize(10001);
-    for (auto word : words) {
-        int w_size = word.size();
-        words_per_length[w_size].push_back(word);
+    Trie* F_trie[10001];
+    Trie* R_trie[10001];
+    for (int i = 0; i <= 10000; i++) {
+        F_trie[i] = new Trie();
+        R_trie[i] = new Trie();
     }
 
-    for (auto query : queries) {
-        int q_size = query.size();
-        auto q_key = q_map.find(query);
+    for (auto str : words) {
+        int len = str.length();
+        F_trie[len]->insert(str.data());
+        reverse(str.begin(), str.end());
+        R_trie[len]->insert(str.data());
+    }
 
-        if (q_key == q_map.end())
-            q_map[query] = find_match(query, words_per_length[q_size], q_size);
-        answer.push_back(q_map[query]);
+    for (auto q : queries) {
+        int len = q.length(); int a;
+        if (q.back() == '?')
+            a = F_trie[len]->getCnt(q.data());
+        else {//if (q.front() == '?')
+            reverse(q.begin(), q.end());
+            a = R_trie[len]->getCnt(q.data());
+        }
+        answer.push_back(a);
     }
 
     return answer;
-}
-
-int main() {
-    vector<string> queries = { "frodo", "front", "frost", "frozen", "frame", "kakao" };
-    vector<string> words = { "fro??", "????o", "fr???", "fro???", "pro?" };
-    vector<int> ans = solution(words, queries);
-    for (int i = 0; i < ans.size(); i++)
-        cout << ans[i] << ', ';
-    return 0;
 }
