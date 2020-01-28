@@ -53,6 +53,18 @@
 - 2가 남으면 먼저 봉지에 모두 담을수 있도록 5kg은 N에서 빼고, 나누어 떨어지는 경우로 처리한다.
 ```
 
+**BOJ_2872**: [우리 집엔 도서관이 있어](https://www.acmicpc.net/problem/2872)
+```
+복잡도는 같지만 더 간결한 코드 작성 가능.
+present = N;
+for (int i = N-1; i >= 0; i--) {
+ if (book[i] == present)
+  present--;
+ else
+  cnt++;
+}
+```
+
 **BOJ_2908**: [상수](https://www.acmicpc.net/problem/2908)
 ```
 - 문제 자체가 쉬운 노가다인데, int로 바꾸지 않고 string인 상태로 각자리를 비교하여 큰 숫자를 출력해주었다.
