@@ -261,32 +261,163 @@ constexpr int md = (int)1e9 + 7;
 using Mint = Modular<std::integral_constant<decay<decltype(md)>::type, md>>;
 
 const int N = 100010;
-
-int n;
-int x[N];
-
-int main() {
-#ifdef LBT
-    freopen("test.in", "r", stdin);
-    int nol_cl = clock();
-#endif
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-
-    cin >> n;
-    for (int i = 1; i <= n; ++i)
-        cin >> x[i];
-    Mint cur = 0, ans = 0;
-    for (int i = 1; i < n; ++i) {
-        cur += 1 / Mint(i);
-        ans += (x[i + 1] - x[i]) * cur;
+/////////////////////////////////////////////////////////////////////////////////////////////
+struct Modint{
+  unsigned val;
+  Modint(){
+    val=0;
+  }
+  Modint(int a){
+    val = ord(a);
+  }
+  Modint(unsigned a){
+    val = ord(a);
+  }
+  Modint(long long a){
+    val = ord(a);
+  }
+  Modint(unsigned long long a){
+    val = ord(a);
+  }
+  inline unsigned ord(unsigned a){
+    return a%MD;
+  }
+  inline unsigned ord(int a){
+    a %= MD;
+    if(a < 0){
+      a += MD;
     }
-    for (int i = 1; i < n; ++i) ans *= i;
-    cout << ans;
-
-#ifdef LBT
-    LOG("Time: %dms\n", int((clock()
-        - nol_cl) / (double)CLOCKS_PER_SEC * 1000));
-#endif
-    return 0;
+    return a;
+  }
+  inline unsigned ord(unsigned long long a){
+    return a%MD;
+  }
+  inline unsigned ord(long long a){
+    a %= MD;
+    if(a < 0){
+      a += MD;
+    }
+    return a;
+  }
+  inline unsigned get(){
+    return val;
+  }
+  inline Modint &operator+=(Modint a){
+    val += a.val;
+    if(val >= MD){
+      val -= MD;
+    }
+    return *this;
+  }
+  inline Modint &operator-=(Modint a){
+    if(val < a.val){
+      val = val + MD - a.val;
+    }
+    else{
+      val -= a.val;
+    }
+    return *this;
+  }
+  inline Modint &operator*=(Modint a){
+    val = ((unsigned long long)val*a.val)%MD;
+    return *this;
+  }
+  inline Modint &operator/=(Modint a){
+    return *this *= a.inverse();
+  }
+  inline Modint operator+(Modint a){
+    return Modint(*this)+=a;
+  }
+  inline Modint operator-(Modint a){
+    return Modint(*this)-=a;
+  }
+  inline Modint operator*(Modint a){
+    return Modint(*this)*=a;
+  }
+  inline Modint operator/(Modint a){
+    return Modint(*this)/=a;
+  }
+  inline Modint operator+(int a){
+    return Modint(*this)+=Modint(a);
+  }
+  inline Modint operator-(int a){
+    return Modint(*this)-=Modint(a);
+  }
+  inline Modint operator*(int a){
+    return Modint(*this)*=Modint(a);
+  }
+  inline Modint operator/(int a){
+    return Modint(*this)/=Modint(a);
+  }
+  inline Modint operator+(long long a){
+    return Modint(*this)+=Modint(a);
+  }
+  inline Modint operator-(long long a){
+    return Modint(*this)-=Modint(a);
+  }
+  inline Modint operator*(long long a){
+    return Modint(*this)*=Modint(a);
+  }
+  inline Modint operator/(long long a){
+    return Modint(*this)/=Modint(a);
+  }
+  inline Modint operator-(void){
+    Modint res;
+    if(val){
+      res.val=MD-val;
+    }
+    else{
+      res.val=0;
+    }
+    return res;
+  }
+  inline operator bool(void){
+    return val!=0;
+  }
+  inline operator int(void){
+    return get();
+  }
+  inline operator long long(void){
+    return get();
+  }
+  inline Modint inverse(){
+    int a = val;
+    int b = MD;
+    int u = 1;
+    int v = 0;
+    int t;
+    Modint res;
+    while(b){
+      t = a / b;
+      a -= t * b;
+      swap(a, b);
+      u -= t * v;
+      swap(u, v);
+    }
+    if(u < 0){
+      u += MD;
+    }
+    res.val = u;
+    return res;
+  }
+  inline Modint pw(unsigned long long b){
+    Modint a(*this);
+    Modint res;
+    res.val = 1;
+    while(b){
+      if(b&1){
+        res *= a;
+      }
+      b >>= 1;
+      a *= a;
+    }
+    return res;
+  }
+  inline bool operator==(int a){
+    return ord(a)==val;
+  }
+  inline bool operator!=(int a){
+    return ord(a)!=val;
+  }
 }
+;
