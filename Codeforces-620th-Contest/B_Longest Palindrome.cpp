@@ -1,3 +1,4 @@
+// #lev2 #문자열처리
 #include <iostream>
 #include <algorithm>
 #include <vector>
@@ -38,6 +39,7 @@ constexpr long long     mod = 1000000007LL;
 int n, m;
 vi h;
 vs str;
+
 int main() {
 	ios::sync_with_stdio(false);
 	cin.tie(nullptr);
@@ -45,12 +47,13 @@ int main() {
 	h.resize(n, 0);
 	str.resize(n);
 	string ans;
-	string cent;
+	string cent; //스스로 팰린드롬인 문자열 하나는 가운데에 위치할 수 있다.
+	
 	for (int i = 0; i < n; i++) cin >> str[i];
 
 	for (int i = 0; i < n; i++) {
 		if (h[i]) continue;
-		h[i]++;
+		h[i]++; //검사된 놈 구별.
 
 		bool palin(false);
 		for (int j = i + 1; j < n; j++) {
@@ -62,12 +65,13 @@ int main() {
 					palin = false; break;
 				}
 			if (palin) {
-				h[j]++;
+				h[j]++; //검사된 놈 구별.
 				ans += str[i];
 				break;
 			}
 		}
 
+		//짝은 존재하지 않지만, cent에 올수 있는 놈이 있으면 넣는다.
 		if (!palin && cent.empty()) {
 			bool palin(true);
 			for (int a = 0; a < m / 2; a++)
