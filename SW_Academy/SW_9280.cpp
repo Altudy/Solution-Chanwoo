@@ -42,21 +42,22 @@ ll sol() {
     ll ans(0);
     cin >> n >> m;
     vl r(n), w(m);
-    vi p(m);
+    vi p(m); //차가 주차되었을 때 차고의 번호 저장.
     for (int i = 0; i < n; i++)
         cin >> r[i];
     for (int i = 0; i < m; i++)
         cin >> w[i];
 
-    m *= 2;
+    m *= 2; //차 개수 2배만큼 입력
     int in(0);
-    queue<int> q;
-    priority_queue<int, vi, greater<int>> pq;
-    for (int i = 0; i < n; i++) pq.push(i);
-
+    queue<int> q;                               //차고가 꽉 찬 상태였을 때 q에 집어넣음
+    priority_queue<int, vi, greater<int>> pq;   //비어있는 차고 번호는 pq에 저장.
+    
+    for (int i = 0; i < n; i++) pq.push(i); //Initialize
     for (int i = 0; i < m; i++) {
         int x; cin >> x;
-
+        
+        //IN
         if (x > 0) {
             x--;
             if (in < n) {
@@ -69,10 +70,12 @@ ll sol() {
                 q.push(x);
             }
         }
+        //OUT
         else {
             x *= (-1); x--;
             pq.push(p[x]); in--;
             //cout << "out : " << x + 1 << endl;
+            //만약 차를 뺐는데, q에 원소가 있으면 대기가 있다는 것이므로 집어넣는 과정 수행해줌.
             if (!q.empty()) {
                 x = q.front(); q.pop();
                 in++;
