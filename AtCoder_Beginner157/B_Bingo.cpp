@@ -1,4 +1,4 @@
-/* #lev2 #구현                          */
+/* #lev1 #Hash                          */
 
 #include <iostream>
 #include <algorithm>
