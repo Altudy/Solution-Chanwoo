@@ -1,4 +1,4 @@
-/* #                          */
+/* #lev4 #SegmentTree #Bitmask            */
 
 #include <iostream>
 #include <algorithm>
@@ -8,6 +8,7 @@
 #include <deque>
 #include <map>
 #include <iomanip>
+#include <bitset>
 #include <functional>
 #include <cassert>
 #include <cstdio>
@@ -36,7 +37,16 @@ typedef vector<char>            vch;
 constexpr int           inf = 0x3f3f3f3f;
 constexpr long long 	INF = 9123456789123456789;
 constexpr long long     MOD = 1000000007LL;
-/*************************************************/
+
+int OR(const int& x, const int& y) {
+    return x | y;
+}
+
+int bitCount(const int& x) {
+    if (x == 0)  return 0;
+    else        return (x & 1) + bitCount(x >> 1);
+}
+
 template <typename M>
 struct SegTree {
     using Op = function<M(const M&, const M&)>;
@@ -61,6 +71,9 @@ struct SegTree {
     void init_space(int n) {
         N = 1; while (N < n) N <<= 1; // assign array space
         a.assign(N << 1, ID);         // 0으로 초기화
+       /* cout << "n : " << n
+            << "\nN : " << N
+            << "\nN<<1 : " << (N << 1) << endl;*/
     }
 
     inline void pull(int i) { a[i] = op(a[i << 1], a[i << 1 | 1]); }
@@ -69,18 +82,24 @@ struct SegTree {
     //Update
     void assign(int p, M val) {
         assert(0 <= p && p < N);
+
+        //Root Node까지 올라가며 차례로 갱신
         for (a[p += N] = val; p >>= 1;) pull(p);
     }
 
     //Query
     M query(int l, int r) const {
-        assert(0 <= l && r <= N);
+        assert(0 <= l && r < N);
         M resl(ID), resr(ID);
-        for (l += N, r += N; l < r; l >>= 1, r >>= 1) {
+
+        for (l += N, r += N; l <= r; l >>= 1, r >>= 1) {
+            //cout << "l : " << l << ", " << "r : " << r << endl;
             if (l & 1) resl = op(resl, a[l++]);
-            if (r & 1) resr = op(a[--r], resr);
+            if (!(r & 1)) resr = op(a[r--], resr);
         }
-        return op(resl, resr);
+        int ans = op(resl, resr);
+        //cout << bitset<32>(ans) << endl;
+        return ans;
     }
     M query_point(int p) const {
         assert(0 <= p && p < N);
@@ -112,20 +131,13 @@ void solve() {
         else {  //the number of different characters in [l, r].
             int l, r;
             cin >> l >> r;
-            l--;
-            cout << __builtin_popcount(occur.query(l, r)) << '\n';
+            l--; r--;
+            cout << bitCount(occur.query(l, r)) << '\n';
         }
     }
 }
 
-int OR(const int& x, const int& y){
-    return x|y;
-}
 
-int bitCount(const int& x){
-    if(x == 0)  return 0;
-    else        return (x&1) + bitCount(x>>1);
-}
 
 int main() {
     ios_base::sync_with_stdio(false);
