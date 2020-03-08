@@ -8,6 +8,8 @@
 #include <deque>
 #include <map>
 #include <iomanip>
+#include <functional>
+#include <bitset>
 #include <cassert>
 #include <cstdio>
 #include <cmath>
@@ -36,16 +38,15 @@ constexpr int           inf = 0x3f3f3f3f;
 constexpr long long 	INF = 9123456789123456789;
 constexpr long long     MOD = 1000000007LL;
 /*************************************************/
-int N;
 
 void sol() {
 
 }
 
 int main() {
-    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr)->ios_base::sync_with_stdio(false);
     cout << fixed << setprecision(12);
-    cin.tie(nullptr);
+    
 
 
     return 0;
