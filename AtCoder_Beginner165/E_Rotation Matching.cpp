@@ -1,5 +1,4 @@
 /* #lev3 #Pattern */
-
 #include <iostream>
 #include <algorithm>
 #include <vector>
