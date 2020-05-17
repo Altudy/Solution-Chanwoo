@@ -14,12 +14,15 @@
 #include <cmath>
 #include <cstdint>
 #include <cstring>
+#include <numeric>
 //#pragma warning(disable:4996)
 
 using namespace std;
 
 
 /** Type Define **/
+typedef unsigned int            uint;
+typedef unsigned char           uchar;
 typedef long long int           ll;
 typedef pair<int, int>          pii;
 typedef pair<ll, ll>            pll;
