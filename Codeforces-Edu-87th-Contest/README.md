@@ -3,6 +3,6 @@ List
 ====
 
 
-C2
+**[C2-Not So Simple Polygon Embedding](https://codeforces.com/contest/1354/problem/C2)**
 
-![C2풀이](handwriting.png){: width="80%" height="80%"}
+![C2풀이](handwriting.png)
